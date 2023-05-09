@@ -1,0 +1,37 @@
+@import './base.css';
+
+* {
+  box-sizing: border-box !important;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+  padding: 60px 15px 0;
+}
+
+.form-group-text *{
+  font-weight: bold !important;
+
+} 
+
+.form-hudtype{
+  border: 0.5rem;
+  border-radius: 1rem;
+  background-color: rgb(255, 248, 123);
+  padding: 1rem;
+}
+
+.form-group{
+  margin-bottom: 1.0rem;
+
+}
+
+.select-dark {
+  background-color: rgb(37, 37, 37) !important;
+  color: white !important;
+}
+
+.form-group > label{
+  margin-bottom: 0.3rem;
+}
