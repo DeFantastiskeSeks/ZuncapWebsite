@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       nameUser: "",
-      password: 0,
+      password: null,
     };
   },
   methods: {
@@ -20,10 +20,10 @@ export default {
         .catch(function (error) {
           console.log(error);
         })
-        .console.log(this.nameUser + this.password);
+        console.log(this.nameUser + this.password);
     },
   },
-};  
+};
 </script> 
 
 <template>
@@ -36,7 +36,7 @@ export default {
             <div class="form-group">
               <label for="nameUser">Navn</label>
               <input
-                :="this.nameUser"
+                v-model="this.nameUser"
                 type="text"
                 class="form-control"
                 placeholder="your name"
@@ -45,10 +45,10 @@ export default {
             <div class="form-group">
               <label for="Password">Password</label>
               <input
-                :="this.password"
+                v-model="this.password"
                 type="password"
                 class="form-control"
-                placeholder="Password"
+                placeholder="Your Password"
               />
             </div>
             <div class="form-check">
@@ -61,12 +61,6 @@ export default {
               >
             </div>
             <button type="submit" class="btn btn-primary" name="submitbtn">Login</button>
-            <br />
-            <small id="PhoneHelp" class="form-text text-muted"
-              >Ingen konto? intet problem. Register her.</small
-            >
-            <br />
-            <button type="submit" class="btn btn-primary">Register</button>
           </div>
         </form>
       </div>
