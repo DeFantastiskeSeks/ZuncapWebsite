@@ -73,7 +73,7 @@ export default {
             </div>
           </div>
           
-          <select name="nuance" v-model="nuance" class="form-select select-dark" id="nuance">
+          <select name="nuance" v-model="nuance" class="form-select" id="nuance">
             <option :value="parseInt(0)" style="background-color: rgb(239, 218, 198);">A</option>
             <option :value="parseInt(0)" style="background-color: rgb(237, 207, 181);">B</option>
             <option :value="parseInt(1)" style="background-color: rgb(232, 200, 155);">C</option>
@@ -88,7 +88,7 @@ export default {
             Bliver du skoldet i den første sommersol, hvis du ikke beskytter
             dig?
           </label>
-          <select name="skoldet" v-model="skoldet" class="form-select select-dark" id="skoldet">
+          <select name="skoldet" v-model="skoldet" class="form-select" id="skoldet">
             <option :value="parseInt(0)">Bliver altid skoldet</option>
             <option :value="parseInt(1)">Bliver sommetider skoldet</option>
             <option :value="parseInt(2)">Bliver sjældent skoldet</option>
@@ -99,7 +99,7 @@ export default {
           <label for="brun">
             Bliver du brun i den første sommersol, hvis du ikke beskytter dig?
           </label>
-          <select name="brun" v-model="brun" class="form-select select-dark" id="brun">
+          <select name="brun" v-model="brun" class="form-select" id="brun">
             <option :value="parseInt(0)">Bliver aldrig brun</option>
             <option :value="parseInt(1)">Bliver lidt brun</option>
             <option :value="parseInt(2)">Bliver noget brun</option>
@@ -108,7 +108,7 @@ export default {
         </div>
         <div class="form-group form-group-text">
           <label for="øjenfarve">Hvad er din øjenfarve?</label>
-          <select name="øjenfarve" v-model="øjenfarve" class="form-select select-dark" id="øjenfarve">
+          <select name="øjenfarve" v-model="øjenfarve" class="form-select" id="øjenfarve">
             <option :value="parseInt(0)" style="background-color: rgb(77, 77, 199)">Blå</option>
             <option :value="parseInt(1)" style="background-color: rgb(110, 110, 110)">Grå</option>
             <option :value="parseInt(1)" style="background-color: rgb(14, 122, 14)">Grøn</option>
@@ -119,7 +119,7 @@ export default {
           <label for="hårfarve">
             Hvad er (var) din naturlige hårfarve, da du var 18 år?
           </label>
-          <select name="hårfarve" v-model="hårfarve" class="form-select select-dark" id="hårfarve">
+          <select name="hårfarve" v-model="hårfarve" class="form-select" id="hårfarve">
             <option :value="parseInt(0)" style="background-color: rgb(243, 90, 8)">Rødt</option>
             <option :value="parseInt(0)" style="background-color: rgb(252, 237, 116)">Blond</option>
             <option :value="parseInt(1)" style="background-color: rgb(185, 93, 27)">Lysebrunt</option>
@@ -129,7 +129,7 @@ export default {
         </div>
         <div class="form-group form-group-text">
           <label for="fregner">Har du fregner?</label>
-          <select name="fregner" v-model="fregner" class="form-select select-dark" id="fregner">
+          <select name="fregner" v-model="fregner" class="form-select" id="fregner">
             <option :value="parseInt(0)">Ja, mange</option>
             <option :value="parseInt(1)">Ja, få</option>
             <option :value="parseInt(2)">Nej</option>

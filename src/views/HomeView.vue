@@ -1,12 +1,11 @@
 <script setup>
-
+import UVindex from '../components/UVindex.vue'
 </script>
 
 <template>
   <div class="container">
-    <h1 class="text-center">Welcome to Zuncap</h1>
     <div class="text-center">
-      <img class="img-fluid my-auto" src="../assets/img/solhat.png" alt="Sol hat billede">
+      <UVindex />
     </div>
   </div>
 </template>
