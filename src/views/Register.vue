@@ -42,7 +42,7 @@ export default {
             </div>
             <div class="form-group">
               <label for="TlfNr">Telefon Nummer</label>
-              <input v-model="tlfNr" type="number" class="form-control" placeholder=" eks. 12345678" />
+              <input v-model="tlfNr" type="text" class="form-control" placeholder=" eks. 12345678" />
             </div>
             <div class="form-group">
               <label for="Password">Password</label>
