@@ -7,7 +7,8 @@
 }
 
 main {
-  padding: 60px 15px 0;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .form-group-text *{
@@ -18,13 +19,12 @@ main {
 .form-hudtype{
   border: 0.5rem;
   border-radius: 1rem;
-  background-color: rgb(255, 248, 123);
+  background-color: rgb(242, 159, 5);
   padding: 1rem;
 }
 
 .form-group{
   margin-bottom: 1.0rem;
-
 }
 
 .select-dark {
@@ -32,6 +32,22 @@ main {
   color: white !important;
 }
 
-.form-group > label{
+.form-group > label {
   margin-bottom: 0.3rem;
+}
+
+.bg-navbar, .bg-footer, .btn-color {
+  background-color: rgb(233,84,32) !important;
+  color: white !important;
+}
+
+.btn {
+  font-weight: bold !important;
+}
+
+.bg-background {
+  background-image: url("https://img.freepik.com/free-vector/gradient-dynamic-lines-background_23-2149020285.jpg");
+  background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: 100% 100%;
 }

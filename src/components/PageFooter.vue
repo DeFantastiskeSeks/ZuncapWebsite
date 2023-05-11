@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <footer class="footer fixed-bottom mt-auto py-3 bg-primary text-white">
+  <footer class="footer fixed-bottom mt-auto py-3 bg-footer">
       <div class="container-fluid">
           <span>Copyright &copy; 2023 Zuncap - Privacy</span>
       </div>

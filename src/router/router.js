@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/hudtypetest',
       name: 'hudtypetest',
-      component: () => import('../views/HudtypeTest.vue')
+      component: () => import('../views/HudtypeTestView.vue')
     }
   ]
 })
