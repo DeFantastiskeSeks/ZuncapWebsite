@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -10,19 +11,20 @@ export default {
     async PostLogin() {
       axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/login", {
-          nameUser,
-          password,
+          name: this.nameUser,
+          password: this.password,
         })
         .then(function (response) {
           console.log(response);
         })
         .catch(function (error) {
           console.log(error);
-        });
+        })
+        .console.log(this.nameUser + this.password);
     },
   },
-};
-</script>
+};  
+</script> 
 
 <template>
   <div class="container">
@@ -34,7 +36,7 @@ export default {
             <div class="form-group">
               <label for="nameUser">Navn</label>
               <input
-                :="nameUser"
+                :="this.nameUser"
                 type="text"
                 class="form-control"
                 placeholder="your name"
@@ -43,7 +45,7 @@ export default {
             <div class="form-group">
               <label for="Password">Password</label>
               <input
-                :="password"
+                :="this.password"
                 type="password"
                 class="form-control"
                 placeholder="Password"

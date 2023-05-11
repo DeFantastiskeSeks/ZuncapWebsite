@@ -1,4 +1,14 @@
-<script setup></script>
+<script>
+  export default {
+    data(){
+      return {
+        nameUser:"",
+        telefonNummer:0,
+        password:""
+      }
+    }
+  }
+</script>
 
 <template>
   <div class="container">
