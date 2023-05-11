@@ -1,26 +1,51 @@
-<script setup></script>
+<script>
+export default {
+  data() {
+    return {
+      nameUser: "",
+      password: 0,
+    };
+  },
+  methods: {
+    async PostLogin() {
+      axios
+        .post("https://zuncapapi.azurewebsites.net/api/Users/login", {
+          nameUser,
+          password,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
+};
+</script>
 
 <template>
   <div class="container">
     <div class="row">
       <div class="col-auto mx-auto">
-        <form>
+        <form v-on:submit.prevent="PostLogin()">
           <div class="form-login">
             <h1>Log in</h1>
             <div class="form-group">
-              <label for="TlfNr">Telefon Nummer</label>
+              <label for="nameUser">Navn</label>
               <input
+                :="nameUser"
                 type="text"
                 class="form-control"
-                placeholder=" eks. 12345678"
+                placeholder="your name"
               />
             </div>
             <div class="form-group">
               <label for="Password">Password</label>
               <input
+                :="password"
                 type="password"
                 class="form-control"
-                id="exampleInputPassword1"
                 placeholder="Password"
               />
             </div>
@@ -28,13 +53,12 @@
               <input
                 type="checkbox"
                 class="form-check-input"
-                id="exampleCheck1"
               />
-              <label class="form-check-label" for="exampleCheck1"
+              <label class="form-check-label"
                 >Husk mig</label
               >
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary" name="submitbtn">Login</button>
             <br />
             <small id="PhoneHelp" class="form-text text-muted"
               >Ingen konto? intet problem. Register her.</small
