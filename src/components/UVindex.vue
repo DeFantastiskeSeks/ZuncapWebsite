@@ -3,12 +3,13 @@ import axios from 'axios'
 export default {
   data() {
     return {
+      //https://www.openuv.io/dashboard?tab=0
       weatherData: null,
-      apiKey: '95e7607033a363dac04ee544b10a8f7c',
+      apiKey: 'openuv-180e7rlhkig55y-io',
       lat: null,
       lon: null,
       geoApiURL: 'http://api.openweathermap.org/geo/1.0/direct?q=DK&appid=',
-      weatherApiURL: 'https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=',
+      weatherApiURL: 'https://api.openuv.io/api/v1/uv?lat=55.65&lng=12.13&alt=100:alt&dt=:d',
       UVI: 0,
       messageFaktor: null,
       messageUVI: null
@@ -39,16 +40,25 @@ export default {
     },
     async GetWeatherData() {
       try {
-        this.weatherData = await axios.get(this.weatherApiURL + this.apiKey, {
-          headers: {
-            'Authorization' : 'Bearer <95e7607033a363dac04ee544b10a8f7c>',
+          var headers = new Headers();
+            myHeaders.append("x-access-token", "openuv-180e7rlhkig55y-io");
+            myHeaders.append("Content-Type", "application/json");
+            
+            var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+        }
+        catch {
+
+          fetch("https://api.openuv.io/api/v1/uv?lat=55.65&lng=12.13&alt=100&dt=", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
           }
-        })
-        console.log(this.weatherData)
-      } catch (ex) {
-        console.log(ex)
-      }
-    },
+        }
+      },
     async GetPosition() {
       try {
         const response = await axios.get(this.geoApiURL + this.apiKey)
@@ -58,17 +68,18 @@ export default {
         console.log(error)
       }
     },
-  },
-  created() {
+  }
+  created(); {
     this.DisplayWarningMessage()
     this.GetPosition()
-  },
-  watch: {
-    UVI: function() {
-      this.DisplayWarningMessage()
-    }
-  },
-};
+    this.GetWeatherData()
+  }
+  //watch: {
+  //  UVI: function() {
+  //    this.DisplayWarningMessage()
+  //  }
+  //},
+//};
 </script>
 
 <template>
