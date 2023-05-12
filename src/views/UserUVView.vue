@@ -1,55 +1,59 @@
 <script>
-import axios from 'axios';
+import axios from "axios";
+import { onMounted } from "vue";
 export default {
   data() {
     return {
       nameUser: "simon",
-      data: "456645456"
+      userData: {userId: 0, name: '', telefonNummer: 0, password: '', hudtype: 0, uvExpo: 0},
     };
   },
   methods: {
-    async GetUserInfo1() {
-      axios
-        .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
-          name: this.nameUser,
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-        this.data = axios.response
-    },
-  },
-};  
-function GetUserInfo() {
+    async GetUserInfo() {
+      console.log("getting user info");
       axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
           name: "simon",
         })
-        .then(function (response) {
-          console.log(response);
+        .then((response) => {
+          console.log(response.data);
+          this.userData = response.data;
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
-        this.data = axios.response
-    }
-addEventListener("load", GetUserInfo());
+    },
+  },
+  mounted: async function () {
+    await this.GetUserInfo()
+    console.log("mounted");
+  },
+};
 </script>
 
 <template>
   <div class="container">
     <div class="text-center">
       <h1>Bruger UV-Index</h1>
-      <p v-bind="this.data">
-        {{ data }}
-      </p>
+      <div id="userData-container">
+        <p>
+          BrugerId: {{userData.userId}}
+        </p>
+        <p>
+          Navn: {{userData.name}}
+        </p>
+        <p>
+          Telefon Nummer: {{userData.telefonNummer}}
+        </p>
+        <p>
+          Hudtype {{userData.hudtype}}
+        </p>
+        <p>
+          UV-Index: {{userData.uvExpo}}
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
