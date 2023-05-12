@@ -4,7 +4,7 @@ export default {
   data() {
     return {
       weatherData: null,
-      apiKey: 'a88cf283128589ef9d60ac0ead865495',
+      apiKey: '95e7607033a363dac04ee544b10a8f7c',
       lat: null,
       lon: null,
       geoApiURL: 'http://api.openweathermap.org/geo/1.0/direct?q=DK&appid=',
@@ -39,7 +39,11 @@ export default {
     },
     async GetWeatherData() {
       try {
-        this.weatherData = await axios.get(this.weatherApiURL + this.apiKey)
+        this.weatherData = await axios.get(this.weatherApiURL + this.apiKey, {
+          headers: {
+            'Authorization' : 'Bearer <95e7607033a363dac04ee544b10a8f7c>',
+          }
+        })
         console.log(this.weatherData)
       } catch (ex) {
         console.log(ex)
