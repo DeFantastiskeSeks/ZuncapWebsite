@@ -5,16 +5,16 @@ export default {
     return {
       nameUser: "",
       tlfNr: 0,
-      password: null,
+      $_password: null,
     };
   },
   methods: {
-    async PostRegister() {
-      axios
-        .post("https://zuncapapi.azurewebsites.net/api/Users/register", {
+    PostRegister: async function() {
+      axios.post("https://zuncapapi.azurewebsites.net/api/Users/register", 
+        {
           name: this.nameUser,
           telefonNummer: this.tlfNr,
-          password: this.password,
+          password: this.$_password,
         })
         .then(function (response) {
           console.log(response);
@@ -22,7 +22,7 @@ export default {
         .catch(function (error) {
           console.log(error);
         })
-      console.log(this.nameUser + " " + this.tlfNr + " " + + this.password);
+      console.log(this.nameUser + " " + this.tlfNr + " " + + this.$_password);
     },
   },
 };  

@@ -40,25 +40,23 @@ export default {
     },
     async GetWeatherData() {
       try {
-          var headers = new Headers();
-            myHeaders.append("x-access-token", "openuv-180e7rlhkig55y-io");
-            myHeaders.append("Content-Type", "application/json");
-            
-            var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-          };
-        }
-        catch {
-
-          fetch("https://api.openuv.io/api/v1/uv?lat=55.65&lng=12.13&alt=100&dt=", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-          }
-        }
-      },
+        var headers = new Headers();
+        myHeaders.append("x-access-token", "openuv-180e7rlhkig55y-io");
+        myHeaders.append("Content-Type", "application/json");
+        
+        var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+        };
+      }
+      catch {
+        fetch("https://api.openuv.io/api/v1/uv?lat=55.65&lng=12.13&alt=100&dt=", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+      }
+    },
     async GetPosition() {
       try {
         const response = await axios.get(this.geoApiURL + this.apiKey)
@@ -68,18 +66,13 @@ export default {
         console.log(error)
       }
     },
-  }
-  created(); {
+  },
+  created() {
     this.DisplayWarningMessage()
     this.GetPosition()
     this.GetWeatherData()
-  }
-  //watch: {
-  //  UVI: function() {
-  //    this.DisplayWarningMessage()
-  //  }
-  //},
-//};
+  },
+};
 </script>
 
 <template>

@@ -1,4 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+import HudtypeTestView from '../views/HudtypeTestView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegisterView from '../views/RegisterView.vue'
+import UserUVView from '../views/UserUVView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -6,27 +12,27 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/HomeView.vue')
+      component: HomeView
     },
     {
       path: '/hudtypetest',
       name: 'hudtypetest',
-      component: () => import('../views/HudtypeTestView.vue')
+      component: HudtypeTestView
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/Login.vue')
+      component: LoginView
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views/Register.vue')
+      component: RegisterView
     },
     {
-      path: '/UserUV',
-      name: 'UserUV',
-      component: () => import('../views/UserUVView.vue')
+      path: '/userUV',
+      name: 'userUV',
+      component: UserUVView
     }
   ]
 })
