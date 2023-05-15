@@ -12,7 +12,7 @@ export default {
         telefonNummer: 0,
         password: "",
         hudtype: 1,
-        uvExpo: 3,
+        uvExpo: 4,
         time:0,
       },
     };
@@ -121,9 +121,10 @@ export default {
     //Methods End
   },
   mounted: async function () {
+    //await this.GetUserInfo();
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
-    await this.GetUserInfo();
-    setInterval(await this.GetUserInfo, this.time)
+
+    //setInterval(await this.GetUserInfo, this.time)
     setTimeout(this.alertMaxUV, this.alertTime * 60000)
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000)
     console.log("AlertTime: " + this.alertTime);
