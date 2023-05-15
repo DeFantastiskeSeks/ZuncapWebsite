@@ -15,7 +15,7 @@ export default {
     };
   },
   methods: {
-    DisplayWarningMessage() {
+    DisplayWarningMessage: function() {
       if (this.UVI >= 2 && this.UVI < 3) {
         this.messageFaktor = "Du kan bruge faktor 15, en gang hver time";
         this.messageUVI = "Lavt";
@@ -76,9 +76,6 @@ export default {
     Error: function () {
       console.log("Geolocation not permited or disabled");
     },
-    ChangeBackground: function () {
-      document.getElementsByName("body");
-    },
   },
   created() {
     this.GetPosition();
@@ -124,6 +121,7 @@ export default {
       </div>
       <div class="card-footer bg-card">
         <div class="d-flex align-items-center justify-content-between">
+<<<<<<< HEAD
           <div v-on:hover="ChangeBackground()">
             <img
               class="img-fluid"
@@ -131,6 +129,10 @@ export default {
               src="../assets/img/orangutan.png"
               alt="Orangutan"
             />
+=======
+          <div>
+            <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
+>>>>>>> c2fd3f6dfc3136ea66cabcf25917f0a8e6810af7
           </div>
           <small> Shine up your life </small>
         </div>
