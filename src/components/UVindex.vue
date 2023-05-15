@@ -15,7 +15,7 @@ export default {
     };
   },
   methods: {
-    DisplayWarningMessage() {
+    DisplayWarningMessage: function() {
       if (this.UVI >= 2 && this.UVI < 3) {
         this.messageFaktor =
           "Du kan bruge faktor 15, en gang hver time";
@@ -81,9 +81,6 @@ export default {
     Error: function() {
       console.log("Geolocation not permited or disabled");
     },
-    ChangeBackground: function() {
-      document.getElementsByName('body')
-    }
   },
   created() {
     this.GetPosition();
@@ -127,7 +124,7 @@ export default {
       </div>
       <div class="card-footer bg-card">        
         <div class="d-flex align-items-center justify-content-between">
-          <div v-on:hover="ChangeBackground()">
+          <div>
             <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
           </div>
           <small>

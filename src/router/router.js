@@ -1,38 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import HudtypeTestView from '../views/HudtypeTestView.vue'
-import LoginView from '../views/LoginView.vue'
-import RegisterView from '../views/RegisterView.vue'
-import UserUVView from '../views/UserUVView.vue'
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  linkActiveClass: 'active',
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/hudtypetest',
       name: 'hudtypetest',
-      component: HudtypeTestView
+      component: () => import('../views/HudtypeTestView.vue')
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: () => import('../views/LoginView.vue')
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterView
+      component: () => import('../views/RegisterView.vue')
     },
     {
       path: '/userUV',
       name: 'userUV',
-      component: UserUVView
+      component: () => import('../views/UserUVView.vue')
     }
   ]
 })
