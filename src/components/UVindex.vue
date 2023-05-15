@@ -15,7 +15,7 @@ export default {
     };
   },
   methods: {
-    DisplayWarningMessage: function () {
+    DisplayWarningMessage: function() {
       if (this.UVI >= 2 && this.UVI < 3) {
         this.messageFaktor = "Du kan bruge faktor 15, en gang hver time";
         this.messageUVI = "Lavt";
@@ -121,8 +121,7 @@ export default {
       </div>
       <div class="card-footer bg-card">
         <div class="d-flex align-items-center justify-content-between">
-<<<<<<< HEAD
-          <div v-on:hover="ChangeBackground()">
+          <div>
             <img
               class="img-fluid"
               style="height: 2.5rem"
