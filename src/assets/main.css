@@ -6,6 +6,13 @@
   margin: 0;
 }
 
+html,
+body,
+main,
+#app {
+  height: 100%;
+}
+
 main {
   padding-top: 60px;
   padding-bottom: 60px;
@@ -36,7 +43,7 @@ main {
   margin-bottom: 0.3rem;
 }
 
-.bg-navbar, .bg-footer, .btn-color, .bg-card {
+.bg-navbar, .bg-footer, .btn-color, .bg-card, .bg-orange {
   background-color: rgb(233,84,32) !important;
   color: white !important;
 }
