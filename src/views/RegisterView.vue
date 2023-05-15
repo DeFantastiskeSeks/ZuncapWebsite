@@ -5,7 +5,7 @@ export default {
     return {
       nameUser: "",
       tlfNr: 0,
-      $_password: null,
+      password: null,
     };
   },
   methods: {
@@ -14,7 +14,7 @@ export default {
         {
           name: this.nameUser,
           telefonNummer: this.tlfNr,
-          password: this.$_password,
+          password: this.password,
         })
         .then(function (response) {
           console.log(response);
@@ -22,7 +22,7 @@ export default {
         .catch(function (error) {
           console.log(error);
         })
-      console.log(this.nameUser + " " + this.tlfNr + " " + + this.$_password);
+      console.log(this.nameUser + " " + this.tlfNr + " " + + this.password);
     },
   },
 };  
