@@ -14,7 +14,7 @@ export default {
     };
   },
   methods: {
-    CalculatehudtypeResultat() {
+    CalculatehudtypeResultat: function() {
       const result =
         this.nuance +
         this.skoldet +
