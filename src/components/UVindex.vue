@@ -18,24 +18,24 @@ export default {
     DisplayWarningMessage() {
       if (this.UVI >= 2 && this.UVI < 3) {
         this.messageFaktor =
-          "Faktor : Du kan bruge faktor 15, en gang hver time, min person";
-        this.messageUVI = "UVI : Lavt";
+          "Du kan bruge faktor 15, en gang hver time";
+        this.messageUVI = "Lavt";
       } else if (this.UVI >= 3 && this.UVI <= 6) {
         this.messageFaktor =
-          "Faktor : Du kan bruge faktor 15, en gang hver time, min person";
-        this.messageUVI = "UVI : Moderat";
+          "Du kan bruge faktor 15, en gang hver time";
+        this.messageUVI = "Moderat";
       } else if (this.UVI >= 6 && this.UVI <= 8) {
         this.messageFaktor =
-          "Faktor : Du kan bruge faktor 30, en gang hver 20, min person";
-        this.messageUVI = "UVI : Højt";
+          "Du kan bruge faktor 30, en gang hver 20 minut";
+        this.messageUVI = "Højt";
       } else if (this.UVI >= 8 && this.UVI <= 10) {
         this.messageFaktor =
-          "Faktor : Du kan bruge faktor 50, en gang hver 15, min person";
-        this.messageUVI = "UVI : Meget høj";
+          "Du kan bruge faktor 50, en gang hver 15 minut";
+        this.messageUVI = "Meget høj";
       } else if (this.UVI >= 10 && this.UVI <= 15) {
         this.messageFaktor =
-          "Faktor : Du kan bruge faktor 50+, en gang hver 10, min person";
-        this.messageUVI = "UVI: Forfærdelig højt";
+          "Du kan bruge faktor 50+, en gang hver 10 minut";
+        this.messageUVI = "Forfærdelig højt";
       }
     },
     GetWeatherData: function() {
@@ -80,6 +80,9 @@ export default {
     },
     Error: function() {
       console.log("Geolocation not permited or disabled");
+    },
+    ChangeBackground: function() {
+      document.getElementsByName('body')
     }
   },
   created() {
@@ -94,16 +97,24 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="d-flex align-items-center justify-content-center h-100">
     <div class="card">
       <div class="card-header bg-card">
-        <h1 class="card-title">UV-Index</h1>
+        <h1 class="card-title text-center">UV-Index</h1>
       </div>
       <div class="card-body">
         <!-- et kort er meget godt-->
-        <div>UVI: {{ UVI }}</div>
-        <div>{{ messageFaktor }}</div>
-        <div>{{ messageUVI }}</div>
+        <div class="container d-flex align-items-center justify-content-center">
+          <div class="row">
+            <div class="col bg-orange rounded-circle">
+              <h1 class="px-4 fw-bold" style="font-size: 6rem;">{{ parseInt(UVI) }}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="mt-3">{{ messageFaktor }}</div>
+          <div class="my-2">{{ messageUVI }}</div>
+        </div>
         <div class="text-center">
           <button
             type="button"
@@ -114,8 +125,15 @@ export default {
           </button>
         </div>
       </div>
-      <div class="card-footer bg-card">
-        <small></small>
+      <div class="card-footer bg-card">        
+        <div class="d-flex align-items-center justify-content-between">
+          <div v-on:hover="ChangeBackground()">
+            <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
+          </div>
+          <small>
+            Shine up your life
+          </small>
+        </div>
       </div>
     </div>
   </div>
