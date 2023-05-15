@@ -121,18 +121,13 @@ export default {
       </div>
       <div class="card-footer bg-card">
         <div class="d-flex align-items-center justify-content-between">
-<<<<<<< HEAD
-          <div v-on:hover="ChangeBackground()">
+          <div>
             <img
               class="img-fluid"
               style="height: 2.5rem"
               src="../assets/img/orangutan.png"
               alt="Orangutan"
             />
-=======
-          <div>
-            <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
->>>>>>> c2fd3f6dfc3136ea66cabcf25917f0a8e6810af7
           </div>
           <small> Shine up your life </small>
         </div>
