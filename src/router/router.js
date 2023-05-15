@@ -28,6 +28,11 @@ const router = createRouter({
       path: '/userUV',
       name: 'userUV',
       component: () => import('../views/UserUVView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'notFound', 
+      redirect: '/' 
     }
   ]
 })
