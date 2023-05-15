@@ -30,7 +30,7 @@ const router = createRouter({
       component: () => import('../views/UserUVView.vue')
     },
     {
-      path: '/:pathMatch(.*)*',
+      path: '/:catchAll(.*)*',
       name: 'notFound', 
       redirect: '/' 
     }
