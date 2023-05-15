@@ -99,8 +99,8 @@ export default {
         <div class="container d-flex align-items-center justify-content-center">
           <div class="row">
             <div class="col bg-orange rounded-circle">
-              <h1 class="px-4 fw-bold" style="font-size: 6rem">
-                {{ parseInt(UVI) }}
+              <h1 class="py-3 fw-bold" style="font-size: 6rem">
+                {{ UVI.toFixed(1) }}
               </h1>
             </div>
           </div>
