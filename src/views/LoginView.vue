@@ -3,16 +3,16 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      $_nameUser: "",
-      $_password: null,
+      nameUser: "",
+      password: null,
     };
   },
   methods: {
     async PostLogin() {
       axios.post("https://zuncapapi.azurewebsites.net/api/Users/login", 
         {
-          name: this.$_nameUser,
-          password: this.$_password,
+          name: this.nameUser,
+          password: this.password,
         })
         .then(function (response) {
           console.log(response);
@@ -20,7 +20,7 @@ export default {
         .catch(function (error) {
           console.log(error);
         })
-        console.log(this.nameUser + this.password);
+        console.log(this.nameUser + ' ' + this.password);
     },
   },
 };
@@ -36,7 +36,7 @@ export default {
             <div class="form-group">
               <label for="nameUser">Navn</label>
               <input
-                v-model="this.$_nameUser"
+                v-model="this.nameUser"
                 type="text"
                 class="form-control"
                 placeholder="your name"
@@ -45,7 +45,7 @@ export default {
             <div class="form-group">
               <label for="Password">Password</label>
               <input
-                v-model="this.$_password"
+                v-model="this.password"
                 type="password"
                 class="form-control"
                 placeholder="Your Password"

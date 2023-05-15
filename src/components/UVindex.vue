@@ -39,8 +39,7 @@ export default {
       }
     },
     async GetWeatherData() {
-      try {
-        var headers = new Headers();
+        var myHeaders = new Headers();
         myHeaders.append("x-access-token", "openuv-180e7rlhkig55y-io");
         myHeaders.append("Content-Type", "application/json");
         
@@ -49,13 +48,11 @@ export default {
         headers: myHeaders,
         redirect: 'follow'
         };
-      }
-      catch {
+
         fetch("https://api.openuv.io/api/v1/uv?lat=55.65&lng=12.13&alt=100&dt=", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
-      }
     },
     async GetPosition() {
       try {
@@ -68,9 +65,12 @@ export default {
     },
   },
   created() {
-    this.DisplayWarningMessage()
-    this.GetPosition()
     this.GetWeatherData()
+  },
+  watch: {
+    UVI: function() {
+      this.DisplayWarningMessage()
+    } 
   },
 };
 </script>
