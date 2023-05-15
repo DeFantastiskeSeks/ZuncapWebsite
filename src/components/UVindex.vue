@@ -17,28 +17,23 @@ export default {
   methods: {
     DisplayWarningMessage() {
       if (this.UVI >= 2 && this.UVI < 3) {
-        this.messageFaktor =
-          "Du kan bruge faktor 15, en gang hver time";
+        this.messageFaktor = "Du kan bruge faktor 15, en gang hver time";
         this.messageUVI = "Lavt";
       } else if (this.UVI >= 3 && this.UVI <= 6) {
-        this.messageFaktor =
-          "Du kan bruge faktor 15, en gang hver time";
+        this.messageFaktor = "Du kan bruge faktor 15, en gang hver time";
         this.messageUVI = "Moderat";
       } else if (this.UVI >= 6 && this.UVI <= 8) {
-        this.messageFaktor =
-          "Du kan bruge faktor 30, en gang hver 20 minut";
+        this.messageFaktor = "Du kan bruge faktor 30, en gang hver 20 minut";
         this.messageUVI = "Højt";
       } else if (this.UVI >= 8 && this.UVI <= 10) {
-        this.messageFaktor =
-          "Du kan bruge faktor 50, en gang hver 15 minut";
+        this.messageFaktor = "Du kan bruge faktor 50, en gang hver 15 minut";
         this.messageUVI = "Meget høj";
       } else if (this.UVI >= 10 && this.UVI <= 15) {
-        this.messageFaktor =
-          "Du kan bruge faktor 50+, en gang hver 10 minut";
+        this.messageFaktor = "Du kan bruge faktor 50+, en gang hver 10 minut";
         this.messageUVI = "Forfærdelig højt";
       }
     },
-    GetWeatherData: function() {
+    GetWeatherData: function () {
       var myHeaders = new Headers();
       myHeaders.append("x-access-token", "openuv-egfdrlhojc8ya-io");
       myHeaders.append("Content-Type", "application/json");
@@ -47,7 +42,7 @@ export default {
         method: "GET",
         headers: myHeaders,
         redirect: "follow",
-      };      
+      };
 
       fetch(
         "https://api.openuv.io/api/v1/uv?lat=" +
@@ -64,7 +59,7 @@ export default {
         })
         .catch((error) => console.log("error", error));
     },
-    GetPosition: function() {
+    GetPosition: function () {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
           this.Succes(position);
@@ -73,17 +68,17 @@ export default {
         this.Error();
       }
     },
-    Succes: function(position) {
+    Succes: function (position) {
       this.lat = position.coords.latitude;
       this.lng = position.coords.longitude;
       this.GetWeatherData();
     },
-    Error: function() {
+    Error: function () {
       console.log("Geolocation not permited or disabled");
     },
-    ChangeBackground: function() {
-      document.getElementsByName('body')
-    }
+    ChangeBackground: function () {
+      document.getElementsByName("body");
+    },
   },
   created() {
     this.GetPosition();
@@ -107,7 +102,9 @@ export default {
         <div class="container d-flex align-items-center justify-content-center">
           <div class="row">
             <div class="col bg-orange rounded-circle">
-              <h1 class="px-4 fw-bold" style="font-size: 6rem;">{{ parseInt(UVI) }}</h1>
+              <h1 class="px-4 fw-bold" style="font-size: 6rem">
+                {{ parseInt(UVI) }}
+              </h1>
             </div>
           </div>
         </div>
@@ -125,14 +122,17 @@ export default {
           </button>
         </div>
       </div>
-      <div class="card-footer bg-card">        
+      <div class="card-footer bg-card">
         <div class="d-flex align-items-center justify-content-between">
           <div v-on:hover="ChangeBackground()">
-            <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
+            <img
+              class="img-fluid"
+              style="height: 2.5rem"
+              src="../assets/img/orangutan.png"
+              alt="Orangutan"
+            />
           </div>
-          <small>
-            Shine up your life
-          </small>
+          <small> Shine up your life </small>
         </div>
       </div>
     </div>
