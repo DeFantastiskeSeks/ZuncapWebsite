@@ -122,11 +122,11 @@ export default {
   },
   mounted: async function () {
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
-    //await this.GetUserInfo();
-    //setInterval(await this.GetUserInfo, this.time)
-    setInterval(this.alertMaxUV, 20000)
+    await this.GetUserInfo();
+    setInterval(await this.GetUserInfo, this.time)
     setTimeout(this.alertMaxUV, this.alertTime * 60000)
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000)
+    console.log("AlertTime: " + this.alertTime);
     console.log("mounted");
   },
 };
