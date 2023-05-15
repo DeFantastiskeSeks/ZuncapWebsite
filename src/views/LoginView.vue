@@ -8,7 +8,7 @@ export default {
     };
   },
   methods: {
-    async PostLogin() {
+    PostLogin: async function() {
       axios.post("https://zuncapapi.azurewebsites.net/api/Users/login", 
         {
           name: this.nameUser,

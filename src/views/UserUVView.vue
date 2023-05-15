@@ -18,7 +18,7 @@ export default {
     };
   },
   methods: {
-    async GetUserInfo() {
+    GetUserInfo: async function() {
       console.log("getting user info");
       axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
@@ -32,7 +32,7 @@ export default {
           console.log(error);
         });
     },
-    async GetInfoTimer(userUVIndex, userHudtype) {
+    GetInfoTimer: async function(userUVIndex, userHudtype) {
       if ((userUVIndex >= 3) & (userUVIndex < 5))
       {
         if  (userHudtype == 1) {
@@ -110,11 +110,11 @@ export default {
       }
       console.log(this.alertTime)
     },
-    alertBeforeMaxUV() {
+    alertBeforeMaxUV: function() {
       alert('Om 10 minutter har du modtaget den anbefalede mængde UV')
     },
     
-    alertMaxUV() {
+    alertMaxUV: function() {
       alert('Du har modtaget den anbefalede mængde UV')
     },
 
