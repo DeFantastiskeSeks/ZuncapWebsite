@@ -122,12 +122,7 @@ export default {
       <div class="card-footer bg-card">
         <div class="d-flex align-items-center justify-content-between">
           <div>
-            <img
-              class="img-fluid"
-              style="height: 2.5rem"
-              src="../assets/img/orangutan.png"
-              alt="Orangutan"
-            />
+            <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
           </div>
           <small> Shine up your life </small>
         </div>
