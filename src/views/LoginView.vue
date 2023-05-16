@@ -105,6 +105,8 @@ export default {
             <button type="submit" class="btn btn-primary" name="submitbtn">
               Login
             </button>
+            <button type="submit" class="btn btn-primary" name="submitbtn">Login</button>
+            <button onclick="location.href='/useruv'" type="submit" class="btn btn-primary" name="submitbtn">Redirect</button>
           </div>
         </form>
       </div>
