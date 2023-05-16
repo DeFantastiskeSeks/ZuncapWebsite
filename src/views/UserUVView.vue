@@ -8,8 +8,8 @@ export default {
       alertTime: null,
       userData: {
         userId: 0,
-        name: "RKA",
-        telefonNummer: 24256443,
+        name: "",
+        telefonNummer: 0,
         password: "",
         hudtype: 1,
         uvExpo: 4,
@@ -22,7 +22,7 @@ export default {
       console.log("getting user info");
       axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
-          name: "simon",
+          name: "TestPerson",
         })
         .then((response) => {
           console.log(response.data);
@@ -139,6 +139,8 @@ export default {
     <div> <!--class="text-center"-->
       <h1 style="font-size: 50px;">Bruger</h1>
 
+      <button @click="GetUserInfo()"></button>
+
       <div id="userData-container">
         
         <table style="width: 40%; height: 300px; font-size: 30px;">
@@ -160,6 +162,7 @@ export default {
             <td>Hudtype </td>
             <td>{{ userData.hudtype }}</td>
           </tr>
+          
           <!--
           <tr>
             <td>UV-Index: </td>
@@ -171,6 +174,7 @@ export default {
             <td>Du har (ikke) fået nok Sol </td>
           </tr>
         </table>
+        
       </div>
     </div>
   </div>
