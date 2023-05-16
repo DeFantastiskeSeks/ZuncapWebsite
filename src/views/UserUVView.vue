@@ -8,8 +8,8 @@ export default {
       alertTime: null,
       userData: {
         userId: 0,
-        name: "",
-        telefonNummer: 0,
+        name: "RKA",
+        telefonNummer: 24256443,
         password: "",
         hudtype: 1,
         uvExpo: 4,
@@ -18,7 +18,7 @@ export default {
     };
   },
   methods: {
-    async GetUserInfo() {
+    GetUserInfo: async function() {
       console.log("getting user info");
       axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
@@ -32,7 +32,7 @@ export default {
           console.log(error);
         });
     },
-    async GetInfoTimer(userUVIndex, userHudtype) {
+    GetInfoTimer: async function(userUVIndex, userHudtype) {
       if ((userUVIndex >= 3) & (userUVIndex < 5))
       {
         if  (userHudtype == 1) {
@@ -110,11 +110,11 @@ export default {
       }
       console.log(this.alertTime)
     },
-    alertBeforeMaxUV() {
+    alertBeforeMaxUV: function() {
       alert('Om 10 minutter har du modtaget den anbefalede mængde UV')
     },
     
-    alertMaxUV() {
+    alertMaxUV: function() {
       alert('Du har modtaget den anbefalede mængde UV')
     },
 
@@ -123,8 +123,9 @@ export default {
   mounted: async function () {
     //await this.GetUserInfo();
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
-
     //setInterval(await this.GetUserInfo, this.time)
+
+    setTimeout(this.alertMaxUV, 5000)
     setTimeout(this.alertMaxUV, this.alertTime * 60000)
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000)
     console.log("AlertTime: " + this.alertTime);
@@ -135,14 +136,41 @@ export default {
 
 <template>
   <div class="container">
-    <div class="text-center">
-      <h1>Bruger UV-Index</h1>
+    <div> <!--class="text-center"-->
+      <h1 style="font-size: 50px;">Bruger</h1>
+
       <div id="userData-container">
-        <p>BrugerId: {{ userData.userId }}</p>
-        <p>Navn: {{ userData.name }}</p>
-        <p>Telefon Nummer: {{ userData.telefonNummer }}</p>
-        <p>Hudtype {{ userData.hudtype }}</p>
-        <p>UV-Index: {{ userData.uvExpo }}</p>
+        
+        <table style="width: 40%; height: 300px; font-size: 30px;">
+          <!--
+          <tr>
+            <td>BrugerId:</td>
+            <td>{{ userData.userId }}</td>
+          </tr>
+          -->
+          <tr>
+            <td>Navn: </td>
+            <td>{{ userData.name }}</td>
+          </tr>
+          <tr>
+            <td>Telefon Nummer: </td>
+            <td>{{ userData.telefonNummer }}</td>
+          </tr>
+          <tr>
+            <td>Hudtype </td>
+            <td>{{ userData.hudtype }}</td>
+          </tr>
+          <!--
+          <tr>
+            <td>UV-Index: </td>
+            <td>{{ userData.uvExpo }}</td>
+          </tr>
+          -->
+          <tr>
+            <td>Sol status:</td>
+            <td>Du har (ikke) fået nok Sol </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

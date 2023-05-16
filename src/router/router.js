@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   linkActiveClass: 'active',
   routes: [
     {
@@ -28,6 +28,11 @@ const router = createRouter({
       path: '/userUV',
       name: 'userUV',
       component: () => import('../views/UserUVView.vue')
+    },
+    {
+      path: '/:catchAll(.*)*',
+      name: 'notFound', 
+      redirect: '/' 
     }
   ]
 })
