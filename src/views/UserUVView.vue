@@ -8,8 +8,8 @@ export default {
       alertTime: null,
       userData: {
         userId: 0,
-        name: "",
-        telefonNummer: 0,
+        name: "RKA",
+        telefonNummer: 24256443,
         password: "",
         hudtype: 1,
         uvExpo: 4,
@@ -136,14 +136,41 @@ export default {
 
 <template>
   <div class="container">
-    <div class="text-center">
-      <h1>Bruger UV-Index</h1>
+    <div> <!--class="text-center"-->
+      <h1 style="font-size: 50px;">Bruger</h1>
+
       <div id="userData-container">
-        <p>BrugerId: {{ userData.userId }}</p>
-        <p>Navn: {{ userData.name }}</p>
-        <p>Telefon Nummer: {{ userData.telefonNummer }}</p>
-        <p>Hudtype {{ userData.hudtype }}</p>
-        <p>UV-Index: {{ userData.uvExpo }}</p>
+        
+        <table style="width: 40%; height: 300px; font-size: 30px;">
+          <!--
+          <tr>
+            <td>BrugerId:</td>
+            <td>{{ userData.userId }}</td>
+          </tr>
+          -->
+          <tr>
+            <td>Navn: </td>
+            <td>{{ userData.name }}</td>
+          </tr>
+          <tr>
+            <td>Telefon Nummer: </td>
+            <td>{{ userData.telefonNummer }}</td>
+          </tr>
+          <tr>
+            <td>Hudtype </td>
+            <td>{{ userData.hudtype }}</td>
+          </tr>
+          <!--
+          <tr>
+            <td>UV-Index: </td>
+            <td>{{ userData.uvExpo }}</td>
+          </tr>
+          -->
+          <tr>
+            <td>Sol status:</td>
+            <td>Du har (ikke) fået nok Sol </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
