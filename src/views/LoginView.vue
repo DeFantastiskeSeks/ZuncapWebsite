@@ -3,15 +3,50 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      nameUser: "",
+      userName: null,
       password: null,
+      cExpiryDays: 30
     };
   },
   methods: {
+    SetCookie: function(cname, cvalue, cexpiredays){
+      //SetCookie: function(cname, cvalue, cPassword, cPasswordValue, cexpiredays){
+      const expirationDate = new Date();
+      expirationDate.setDate((expirationDate.getDate)+(cexpiredays*24*60*60*1000));
+      let expires = "expires= " + expirationDate.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";"  + expires + ";path=/";
+      //document.cookie = cname + "=" + cvalue + ";" + cPassword + "=" + cPasswordValue + ";"  + expires + ";path=/";
+    },
+    GetCookie: function(cname){
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for (let i = 0; i<ca.length; i++){
+        let c = ca[i];
+        while (c.charAt(0)== ''){
+          c= c.substring(1);
+        }
+        if (c.indexOf(name)==0){
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    },
+    CheckCookie: function(){
+      let username = this.GetCookie("userName");
+      if (username != ""){
+        alert("Hej igen" + username);
+      } else {
+        username = prompt("Indtast venligst brugernavn:", "");
+        if (username != "" && username != null){
+          this.SetCookie("userName", username, this.cExpiryDays)
+        }
+      }
+    },
     async PostLogin() {
       axios.post("https://zuncapapi.azurewebsites.net/api/Users/login", 
         {
-          name: this.nameUser,
+          name: this.userName,
           password: this.password,
         })
         .then(function (response) {
@@ -20,9 +55,19 @@ export default {
         .catch(function (error) {
           console.log(error);
         })
-        console.log(this.nameUser + ' ' + this.password);
+        console.log(this.userName + ' ' + this.password);
+        //this.SetCookie("userName", this.userName, "password", this.password, this.cExpiryDays)
+        this.SetCookie("userName", this.userName, this.cExpiryDays)
+
     },
   },
+  mounted: function() {
+    console.log("mounting")
+    let cookie = this.GetCookie("userName")
+    console.log(cookie)
+    console.log("mounted")
+  }
+  
 };
 </script> 
 
@@ -36,11 +81,10 @@ export default {
             <div class="form-group">
               <label for="nameUser">Navn</label>
               <input
-                v-model="this.nameUser"
+                v-model="this.userName"
                 type="text"
                 class="form-control"
-                placeholder="your name"
-              />
+                placeholder="your name" />
             </div>
             <div class="form-group">
               <label for="Password">Password</label>
@@ -48,8 +92,7 @@ export default {
                 v-model="this.password"
                 type="password"
                 class="form-control"
-                placeholder="Your Password"
-              />
+                placeholder="Your Password" />
             </div>
             <div class="form-check">
               <input
