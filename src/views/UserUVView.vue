@@ -123,8 +123,9 @@ export default {
   mounted: async function () {
     //await this.GetUserInfo();
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
-
     //setInterval(await this.GetUserInfo, this.time)
+
+    setTimeout(this.alertMaxUV, 5000)
     setTimeout(this.alertMaxUV, this.alertTime * 60000)
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000)
     console.log("AlertTime: " + this.alertTime);
