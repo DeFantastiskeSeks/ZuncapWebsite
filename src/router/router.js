@@ -25,9 +25,9 @@ const router = createRouter({
       component: () => import('../views/RegisterView.vue')
     },
     {
-      path: '/useruv',
-      name: 'useruv',
-      component: () => import('../views/UserUVView.vue')
+      path: '/user',
+      name: 'user',
+      component: () => import('../views/UserView.vue')
     },
     {
       path: '/:catchAll(.*)*',

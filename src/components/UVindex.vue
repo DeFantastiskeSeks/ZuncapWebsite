@@ -113,8 +113,7 @@ export default {
           <button
             type="button"
             class="btn btn-color mt-2"
-            v-on:click="GetPosition()"
-          >
+            v-on:click="GetPosition()">
             Update
           </button>
         </div>

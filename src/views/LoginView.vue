@@ -59,12 +59,13 @@ export default {
   mounted: function () {
     console.log("mounting");
     console.log(this.userName + " " + this.password);
-    let cookie = this.GetCookie("userName", "password");
+    let cookie = this.GetCookie("userName");
     if (cookie != null) {
       this.userName = cookie[0];
       this.password = cookie[1];
       if (this.userName && this.password != null) {
         this.PostLogin();
+        window.location.href = "/user";
       }
     }
     console.log(this.userName + " " + this.password);
@@ -102,11 +103,9 @@ export default {
               <input type="checkbox" class="form-check-input" />
               <label class="form-check-label">Husk mig</label>
             </div>
-            <button type="submit" class="btn btn-primary" name="submitbtn">
-              Login
-            </button>
-            <button type="submit" class="btn btn-primary" name="submitbtn">Login</button>
-            <button onclick="location.href='/useruv'" type="submit" class="btn btn-primary" name="submitbtn">Redirect</button>
+            <div>
+              <button onclick="location.href='/user'" type="submit" class="btn btn-primary" name="submitbtn">Login</button>
+            </div>
           </div>
         </form>
       </div>
