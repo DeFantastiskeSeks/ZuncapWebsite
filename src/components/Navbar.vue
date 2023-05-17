@@ -15,7 +15,7 @@ import { RouterLink } from 'vue-router'
                   <RouterLink class="nav-link" to="/hudtypetest">HudtypeTest</RouterLink>
                   <RouterLink class="nav-link" to="/login">Login</RouterLink>
                   <RouterLink class="nav-link" to="/register">Register</RouterLink>
-                  <RouterLink class="nav-link" to="/user">Bruger's UV</RouterLink>
+                  <RouterLink class="nav-link" to="/user">Bruger</RouterLink>
                 </ul>
             </div>
         </div>
