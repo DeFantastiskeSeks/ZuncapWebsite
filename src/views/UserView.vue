@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+//import { count } from "console";
 import { setTransitionHooks } from "vue";
 export default {
   data() {
@@ -100,13 +101,39 @@ export default {
           this.alertTime = 35;
         }
       }
-      console.log(this.alertTime);
     },
+    startTimer: function() {
+
+      let starttimer = 0;
+      
+      if (this.userData.uvExpo > 3) {
+        const interval = setInterval(() => {
+          starttimer = starttimer + 1;
+
+          if (starttimer > this.alertTime ) {
+            clearInterval(interval);
+            starttimer = 0;
+          }
+        }, 1000);
+      }
+    },
+
+    dayCount () {
+      let time = this.startTimer()
+      
+      if (0 < time < this.alertTime){
+        dayCount++
+      }
+      if ( time > this.alertTime ) {
+        dayCount = 0
+      }
+    },
+    
     alertBeforeMaxUV: function () {
-      alert("Om 10 minutter har du modtaget den anbefalede mængde UV");
+      alert("Om 10 minutter er i risiko for at blive solskoldet, og miste din streak");
     },
     alertMaxUV: function () {
-      alert("Du har modtaget den anbefalede mængde UV");
+      alert("Du er i risiko for at blive solskoldet, og har mistet din streak");
     },
     GetCookie: function (name) {
       var cookieValue = null;
@@ -125,6 +152,7 @@ export default {
       }
       return cookieValue;
     },
+
   }, //Methods End
   mounted: async function () {
     let cookie = this.GetCookie("userName");
@@ -134,10 +162,12 @@ export default {
         await this.GetUserInfo(this.cUserName);
       }
     }
+    
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000);
-    console.log("AlertTime: " + this.alertTime);
+    this.startTimer()
+    //console.log("AlertTime: " + this.alertTime);
     console.log("mounted");
   },
 };
@@ -171,5 +201,5 @@ export default {
     </div>
   </div>
 </template>
-
+8e
 <style scoped></style>
