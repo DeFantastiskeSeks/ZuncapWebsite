@@ -23,7 +23,7 @@ export default {
   methods: {
     GetUserInfo: async function (userName) {
       console.log("getting user info");
-      axios
+      await axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
           name: userName,
         })
@@ -120,7 +120,7 @@ export default {
     },
 
     dayCount () {
-      let time = this.startTimer()
+      dayCount = 0
       
       if (0 < time < this.alertTime){
         dayCount++
@@ -178,7 +178,6 @@ export default {
       const MS_PER_DAY = 1000 * 60 * 60 * 24;
       const date = new Date()
       console.log("date: " + date);
-      //debugger
       const diffence = Math.floor((cDate - date) / MS_PER_DAY);
       console.log("Diffence: " + diffence);
       if (diffence > 2){
@@ -188,7 +187,6 @@ export default {
     },
   }, //Methods End
   mounted: async function () {
-    //debugger
     let cookie = await this.GetCookie("userName");
     if (cookie != null) {
       this.cUserName = cookie[0];
@@ -201,6 +199,7 @@ export default {
     this.SetCookie();
     this.SunReminder();
 
+    
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000);
@@ -215,29 +214,57 @@ export default {
 </script>
  
 <template>
-  <div class="container">
-    <div>
-      <h1 style="font-size: 50px">Bruger</h1>
-      <button @click="GetUserInfo()"></button>
-      <div id="userData-container">
-        <table style="width: 40%; height: 300px; font-size: 30px">
-          <tr>
-            <td>Navn:</td>
-            <td>{{ userData.name }}</td>
-          </tr>
-          <tr>
-            <td>Telefon Nummer:</td>
-            <td>{{ userData.telefonNummer }}</td>
-          </tr>
-          <tr>
-            <td>Hudtype</td>
-            <td>{{ userData.hudtype }}</td>
-          </tr>
-          <tr>
-            <td>Sol status:</td>
-            <td>Du har (ikke) fået nok Sol</td>
-          </tr>
-        </table>
+  <div class="container h-100">
+    <div class="d-flex align-items-center justify-content-center h-100">
+      <div class="card">
+        <div class="card-header bg-orange">
+          <h1 class="card-title">Bruger</h1>
+        </div>
+        <div class="card-body">          
+          <button @click="GetUserInfo()" class="btn btn-color">Update</button>
+          <div id="userData-container" class="row">            
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                Navn
+              </div>
+              <div class="col">
+                {{ userData.name }}
+              </div>
+            </div>
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                Tlf:
+              </div>
+              <div class="col">
+                {{ userData.telefonNummer }}
+              </div>
+            </div>
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                Hudtype:
+              </div>
+              <div class="col">
+                {{ userData.hudtype }}
+              </div>
+            </div>
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                UV-Expo:
+              </div>
+              <div class="col">
+                {{ userData.uvExpo }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-card">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
+            </div>
+            <small> Shine up your life </small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
