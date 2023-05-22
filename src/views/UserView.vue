@@ -186,7 +186,6 @@ export default {
         console.log("Diffence: " + diffence);
       }
     },
-
   }, //Methods End
   mounted: async function () {
     //debugger
