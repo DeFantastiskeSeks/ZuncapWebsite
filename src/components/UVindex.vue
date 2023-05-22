@@ -89,41 +89,43 @@ export default {
 </script>
 
 <template>
-  <div class="d-flex align-items-center justify-content-center h-100">
-    <div class="card">
-      <div class="card-header bg-card">
-        <h1 class="card-title text-center">UV-Index</h1>
-      </div>
-      <div class="card-body">
-        <!-- et kort er meget godt-->
-        <div class="container d-flex align-items-center justify-content-center">
-          <div class="row">
-            <div class="col bg-orange rounded-circle">
-              <h1 class="py-3 fw-bold" style="font-size: 6rem">
-                {{ UVI.toFixed(1) }}
-              </h1>
+  <div class="container h-100">
+    <div class="d-flex align-items-center justify-content-center h-100">
+      <div class="card">
+        <div class="card-header bg-card">
+          <h1 class="card-title text-center">UV-Index</h1>
+        </div>
+        <div class="card-body">
+          <!-- et kort er meget godt-->
+          <div class="container d-flex align-items-center justify-content-center">
+            <div class="row">
+              <div class="col bg-orange rounded-circle">
+                <h1 class="py-3 fw-bold" style="font-size: 6rem">
+                  {{ UVI.toFixed(1) }}
+                </h1>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="text-center">
-          <div class="mt-3">{{ messageFaktor }}</div>
-          <div class="my-2">{{ messageUVI }}</div>
-        </div>
-        <div class="text-center">
-          <button
-            type="button"
-            class="btn btn-color mt-2"
-            v-on:click="GetPosition()">
-            Update
-          </button>
-        </div>
-      </div>
-      <div class="card-footer bg-card">
-        <div class="d-flex align-items-center justify-content-between">
-          <div>
-            <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
+          <div class="text-center">
+            <div class="mt-3">{{ messageFaktor }}</div>
+            <div class="my-2">{{ messageUVI }}</div>
           </div>
-          <small> Shine up your life </small>
+          <div class="text-center">
+            <button
+              type="button"
+              class="btn btn-color mt-2"
+              v-on:click="GetPosition()">
+              Update
+            </button>
+          </div>
+        </div>
+        <div class="card-footer bg-card">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
+            </div>
+            <small> Shine up your life </small>
+          </div>
         </div>
       </div>
     </div>

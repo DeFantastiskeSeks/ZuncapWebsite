@@ -16,7 +16,7 @@ if ("geolocation" in navigator) {
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="h-100">
     <RouterView />
   </main>
   <Footer />
