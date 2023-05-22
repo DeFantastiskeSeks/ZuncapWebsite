@@ -26,7 +26,6 @@ export default {
       axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
           name: userName,
-
         })
         .then((response) => {
           console.log(response.data);
@@ -37,7 +36,7 @@ export default {
         });
     },
     GetInfoTimer: async function (userUVIndex, userHudtype) {
-      debugger;
+      //debugger;
       if ((userUVIndex >= 3) & (userUVIndex < 5)) {
         if (userHudtype == 1) {
           this.alertTime = 40;
@@ -164,7 +163,6 @@ export default {
       return cookieValue;
     },
     SunReminder: function () {
-      debugger
       let cookie = this.GetCookie("sunExpoCount");
       if (cookie == null) {
        return null;
@@ -180,6 +178,7 @@ export default {
       const MS_PER_DAY = 1000 * 60 * 60 * 24;
       const date = new Date()
       console.log("date: " + date);
+      //debugger
       const diffence = Math.floor((cDate - date) / MS_PER_DAY);
       console.log("Diffence: " + diffence);
       if (diffence > 2){
@@ -190,12 +189,13 @@ export default {
 
   }, //Methods End
   mounted: async function () {
-    let cookie = this.GetCookie("userName");
+    //debugger
+    let cookie = await this.GetCookie("userName");
     if (cookie != null) {
       this.cUserName = cookie[0];
-      if (this.cUserName != null) {
-        await this.GetUserInfo(this.cUserName);
-      }
+    }
+    if (this.cUserName != null) {
+      await this.GetUserInfo(this.cUserName);
     }
     
     this.alertMaxUV();
@@ -206,7 +206,7 @@ export default {
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000);
     console.log(this.alertTime)
-    debugger;
+    //debugger;
     this.startTimer()
     //console.log("AlertTime: " + this.alertTime);
     console.log("mounted");
