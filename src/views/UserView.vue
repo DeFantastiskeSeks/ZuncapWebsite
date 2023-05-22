@@ -163,6 +163,31 @@ export default {
       }
       return cookieValue;
     },
+    SunReminder: function () {
+      debugger
+      let cookie = this.GetCookie("sunExpoCount");
+      if (cookie == null) {
+       return null;
+      }
+      let cDate = new Date()
+      // cDate.setDate(cDate.getDate() + (3 * 24 * 60 * 60 * 1000))
+      cDate.Date.parse(cookie[0]).toString("MMMM yyyy");
+      cDate.setTime(cDate.getTime + (3 * 24 * 60 * 60 * 1000))
+
+      // const cDate = new Date()
+      // cDate.setDate(cDate.getDate() + 3);
+      console.log("cDate: " + cDate);
+
+      const MS_PER_DAY = 1000 * 60 * 60 * 24;
+      const date = new Date()
+      console.log("date: " + date);
+      const diffence = Math.floor((cDate - date) / MS_PER_DAY);
+      console.log("Diffence: " + diffence);
+      if (diffence > 2){
+        alert("Du har ikke fået nok sol i " + diffence + "dage")
+        console.log("Diffence: " + diffence);
+      }
+    },
 
   }, //Methods End
   mounted: async function () {
@@ -174,6 +199,10 @@ export default {
       }
     }
     
+    this.alertMaxUV();
+    this.SetCookie();
+    this.SunReminder();
+
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000);
