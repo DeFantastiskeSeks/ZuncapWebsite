@@ -8,6 +8,7 @@ export default {
       time: 60000 * 1,
       alertTime: null,
       cUserName: null,
+      cExpiredays: 5,
       userData: {
         userId: 0,
         name: "",
@@ -130,13 +131,22 @@ export default {
       }
     },
     
+    SetCookie: async function (cname, cvalue, cPasswordValue, cexpiredays) {
+      const expirationDate = new Date();
+      expirationDate.setDate(
+        expirationDate.getDate + cexpiredays * 24 * 60 * 60 * 1000
+      );
+      let expires = "expires= " + expirationDate.toUTCString();
+      document.cookie =
+        "sunExpoCount" + "=" + cvalue + "," + cPasswordValue + ";" + expires + ";path=/";
+    },
     alertBeforeMaxUV: function () {
       alert("Om 10 minutter er i risiko for at blive solskoldet, og miste din streak");
     },
     alertMaxUV: function () {
-      alert("Du er i risiko for at blive solskoldet, og har mistet din streak");
+      alert("Du er i risiko for at blive solskoldet, og du har mistet din streak");
     },
-    GetCookie: function (name) {
+    GetCookie: async function (name) {
       var cookieValue = null;
       if (document.cookie && document.cookie !== "") {
         var cookies = document.cookie.split(";");
@@ -153,7 +163,7 @@ export default {
       }
       return cookieValue;
     },
-    
+
   }, //Methods End
   mounted: async function () {
     let cookie = this.GetCookie("userName");
@@ -163,7 +173,7 @@ export default {
         await this.GetUserInfo(this.cUserName);
       }
     }
-
+    
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000);
