@@ -14,7 +14,7 @@ export default {
         telefonNummer: 0,
         password: "",
         hudtype: 1,
-        uvExpo: 4,
+        uvExpo: 11,
         time: 0,
       },
     };
@@ -25,6 +25,7 @@ export default {
       axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
           name: userName,
+
         })
         .then((response) => {
           console.log(response.data);
@@ -35,6 +36,7 @@ export default {
         });
     },
     GetInfoTimer: async function (userUVIndex, userHudtype) {
+      debugger;
       if ((userUVIndex >= 3) & (userUVIndex < 5)) {
         if (userHudtype == 1) {
           this.alertTime = 40;
@@ -44,8 +46,7 @@ export default {
           this.alertTime = 65;
         } else if (userHudtype == 4) {
           this.alertTime = 95;
-        } else userHudtype == 5;
-        {
+        } else if (userHudtype >= 5) {
           this.alertTime = 130;
         }
       } else if ((userUVIndex >= 5) & (userUVIndex < 7)) {
@@ -57,8 +58,7 @@ export default {
           this.alertTime = 36;
         } else if (userHudtype == 4) {
           this.alertTime = 56;
-        } else userHudtype == 5;
-        {
+        } else if (userHudtype >= 5) {
           this.alertTime = 78;
         }
       } else if ((userUVIndex >= 7) & (userUVIndex < 9)) {
@@ -70,8 +70,7 @@ export default {
           this.alertTime = 25;
         } else if (userHudtype == 4) {
           this.alertTime = 40;
-        } else userHudtype == 5;
-        {
+        } else if (userHudtype >= 5) {
           this.alertTime = 55;
         }
       } else if ((userUVIndex >= 9) & (userUVIndex < 11)) {
@@ -83,11 +82,10 @@ export default {
           this.alertTime = 18;
         } else if (userHudtype == 4) {
           this.alertTime = 30;
-        } else userHudtype == 5;
-        {
+        } else if (userHudtype >= 5) {
           this.alertTime = 42;
         }
-      } else if (userUVIndex < 11) {
+      } else if (userUVIndex >= 11) {
         if (userHudtype == 1) {
           this.alertTime = 10;
         } else if (userHudtype == 2) {
@@ -96,8 +94,7 @@ export default {
           this.alertTime = 15;
         } else if (userHudtype == 4) {
           this.alertTime = 25;
-        } else userHudtype == 5;
-        {
+        } else if (userHudtype >= 5) {
           this.alertTime = 35;
         }
       }
@@ -105,12 +102,16 @@ export default {
     startTimer: function() {
 
       let starttimer = 0;
+      //let userUVExpo = this.userData.uvExpo
+      //let userHudtype = this.userData.hudtype
+      //let endTime = this.GetInfoTimer(userUVExpo, userHudtype)
       
       if (this.userData.uvExpo > 3) {
         const interval = setInterval(() => {
           starttimer = starttimer + 1;
+          console.log(starttimer)
 
-          if (starttimer > this.alertTime ) {
+          if (starttimer > this.alertTime) {
             clearInterval(interval);
             starttimer = 0;
           }
@@ -152,7 +153,7 @@ export default {
       }
       return cookieValue;
     },
-
+    
   }, //Methods End
   mounted: async function () {
     let cookie = this.GetCookie("userName");
@@ -162,17 +163,20 @@ export default {
         await this.GetUserInfo(this.cUserName);
       }
     }
-    
+
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000);
+    console.log(this.alertTime)
+    debugger;
     this.startTimer()
     //console.log("AlertTime: " + this.alertTime);
     console.log("mounted");
+  
   },
 };
 </script>
-
+ 
 <template>
   <div class="container">
     <div>
@@ -201,5 +205,4 @@ export default {
     </div>
   </div>
 </template>
-8e
 <style scoped></style>
