@@ -130,7 +130,7 @@ export default {
       }
     },
     
-    SetCookie: function (cname, cvalue, cPasswordValue, cexpiredays) {
+    SetCookie: async function (cname, cvalue, cPasswordValue, cexpiredays) {
       const expirationDate = new Date();
       expirationDate.setDate(
         expirationDate.getDate + cexpiredays * 24 * 60 * 60 * 1000
@@ -145,7 +145,7 @@ export default {
     alertMaxUV: function () {
       alert("Du er i risiko for at blive solskoldet, og du har mistet din streak");
     },
-    GetCookie: function (name) {
+    GetCookie: async function (name) {
       var cookieValue = null;
       if (document.cookie && document.cookie !== "") {
         var cookies = document.cookie.split(";");
@@ -162,19 +162,18 @@ export default {
       }
       return cookieValue;
     },
-    SunReminder: function () {
-      debugger
-      let cookie = this.GetCookie("sunExpoCount");
+    SunReminder: async function () {
+      let cookie = await this.GetCookie("sunExpoCount");
       if (cookie == null) {
        return null;
       }
-      let cDate = new Date()
+      const cDate = new Date();
       // cDate.setDate(cDate.getDate() + (3 * 24 * 60 * 60 * 1000))
-      cDate.Date.parse(cookie[0]).toString("MMMM yyyy");
-      cDate.setTime(cDate.getTime + (3 * 24 * 60 * 60 * 1000))
+      cDate.setDate(cDate.getDate() + (24 * 60 * 60 * 1000))
 
       // const cDate = new Date()
       // cDate.setDate(cDate.getDate() + 3);
+      debugger
       console.log("cDate: " + cDate);
 
       const MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -198,8 +197,8 @@ export default {
       }
     }
     this.alertMaxUV()
-    this.SetCookie()
-    this.SunReminder()
+    await this.SetCookie()
+    await this.SunReminder()
     
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
