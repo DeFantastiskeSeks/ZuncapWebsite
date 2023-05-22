@@ -36,7 +36,7 @@ export default {
         });
     },
     GetInfoTimer: async function (userUVIndex, userHudtype) {
-      //debugger;
+      debugger;
       if ((userUVIndex >= 3) & (userUVIndex < 5)) {
         if (userHudtype == 1) {
           this.alertTime = 40;
@@ -101,34 +101,43 @@ export default {
     },
     startTimer: function() {
 
-      let starttimer = 0;
+      let timer = 0;
+      let dayCount = 0;
+      
       //let userUVExpo = this.userData.uvExpo
       //let userHudtype = this.userData.hudtype
       //let endTime = this.GetInfoTimer(userUVExpo, userHudtype)
       
       if (this.userData.uvExpo > 3) {
-        const interval = setInterval(() => {
-          starttimer = starttimer + 1;
-          console.log(starttimer)
 
-          if (starttimer > this.alertTime) {
+        const interval = setInterval(() => {
+          timer = timer + 1;
+          console.log("sekunder: " + timer)
+
+          if (timer === 10 ){
+            dayCount = dayCount + 1;
+            console.log("Daycount: " + dayCount)
+          }
+
+          if (timer > this.alertTime * 60) {
             clearInterval(interval);
-            starttimer = 0;
+            timer = 0;
+            dayCount = 0;
           }
         }, 1000);
       }
     },
 
-    dayCount () {
-      dayCount = 0
+    // dayCount () {
+    //   let count = 0
       
-      if (0 < time < this.alertTime){
-        dayCount++
-      }
-      if ( time > this.alertTime ) {
-        dayCount = 0
-      }
-    },
+    //   if (0 < timer < this.alertTime){
+    //     count = count + 1
+    //   }
+    //   if ( this.startTimer > this.alertTime ) {
+    //     count = 0
+    //   }
+    // },
     
     SetCookie: async function (cname, cvalue, cPasswordValue, cexpiredays) {
       const expirationDate = new Date();
@@ -205,15 +214,16 @@ export default {
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000);
     console.log(this.alertTime)
-    //debugger;
+    
     this.startTimer()
+    console.log(this.dayCount())
     //console.log("AlertTime: " + this.alertTime);
     console.log("mounted");
   
   },
 };
 </script>
- 
+  
 <template>
   <div class="container">
     <div>
@@ -234,8 +244,8 @@ export default {
             <td>{{ userData.hudtype }}</td>
           </tr>
           <tr>
-            <td>Sol status:</td>
-            <td>Du har (ikke) fået nok Sol</td>
+            <td>Dage med Sol:</td>
+            <td>{{ dayCount}}</td>
           </tr>
         </table>
       </div>
