@@ -1,5 +1,4 @@
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
@@ -12,6 +11,7 @@ export default {
       UVI: 0,
       messageFaktor: null,
       messageUVI: null,
+      loading: false
     };
   },
   methods: {
@@ -33,7 +33,7 @@ export default {
         this.messageUVI = "Forfærdelig højt";
       }
     },
-    GetWeatherData: function () {
+    GetWeatherData: async function () {
       var myHeaders = new Headers();
       myHeaders.append("x-access-token", "openuv-egfdrlhojc8ya-io");
       myHeaders.append("Content-Type", "application/json");
@@ -42,9 +42,9 @@ export default {
         method: "GET",
         headers: myHeaders,
         redirect: "follow",
-      };
+      };      
 
-      fetch(
+      await fetch(
         "https://api.openuv.io/api/v1/uv?lat=" +
           this.lat +
           "&lng=" +
@@ -56,11 +56,13 @@ export default {
         .then((result) => {
           const newResult = JSON.parse(result);
           this.UVI = newResult.result.uv;
+          this.loading = false;
         })
         .catch((error) => console.log("error", error));
     },
     GetPosition: function () {
       if ("geolocation" in navigator) {
+        this.loading = true;
         navigator.geolocation.getCurrentPosition((position) => {
           this.Succes(position);
         });
@@ -95,22 +97,23 @@ export default {
         <div class="card-header bg-card">
           <h1 class="card-title text-center">UV-Index</h1>
         </div>
-        <div class="card-body">
+        <div class="card-body text-center">
           <!-- et kort er meget godt-->
-          <div class="container d-flex align-items-center justify-content-center">
-            <div class="row">
-              <div class="col bg-orange rounded-circle">
-                <h1 class="py-3 fw-bold" style="font-size: 6rem">
-                  {{ UVI.toFixed(1) }}
-                </h1>
+          <div class="spinner-border text-orange" style="width: 3rem; height: 3rem;" v-if="loading" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="container" v-if="!loading">
+            <div class="d-flex align-items-center justify-content-center">            
+              <div class="row">
+                <div class="col bg-orange rounded-circle">
+                  <h1 class="py-3 fw-bold" style="font-size: 6rem">
+                    {{ UVI.toFixed(1) }}
+                  </h1>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="text-center">
             <div class="mt-3">{{ messageFaktor }}</div>
             <div class="my-2">{{ messageUVI }}</div>
-          </div>
-          <div class="text-center">
             <button
               type="button"
               class="btn btn-color mt-2"
