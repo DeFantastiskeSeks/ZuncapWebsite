@@ -171,8 +171,7 @@ export default {
       }
       let cDate = new Date()
       // cDate.setDate(cDate.getDate() + (3 * 24 * 60 * 60 * 1000))
-      cDate.Date.parse(cookie[0]).toString("MMMM yyyy");
-      cDate.setTime(cDate.getTime + (3 * 24 * 60 * 60 * 1000))
+      cDate.setTime(cDate.getTime() + (3 * 24 * 60 * 60 * 1000))
 
       // const cDate = new Date()
       // cDate.setDate(cDate.getDate() + 3);
