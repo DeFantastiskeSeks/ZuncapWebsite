@@ -130,11 +130,20 @@ export default {
       }
     },
     
+    SetCookie: function (cname, cvalue, cPasswordValue, cexpiredays) {
+      const expirationDate = new Date();
+      expirationDate.setDate(
+        expirationDate.getDate + cexpiredays * 24 * 60 * 60 * 1000
+      );
+      let expires = "expires= " + expirationDate.toUTCString();
+      document.cookie =
+        "sunExpoCount" + "=" + cvalue + "," + cPasswordValue + ";" + expires + ";path=/";
+    },
     alertBeforeMaxUV: function () {
       alert("Om 10 minutter er i risiko for at blive solskoldet, og miste din streak");
     },
     alertMaxUV: function () {
-      alert("Du er i risiko for at blive solskoldet, og har mistet din streak");
+      alert("Du er i risiko for at blive solskoldet, og du har mistet din streak");
     },
     GetCookie: function (name) {
       var cookieValue = null;
@@ -154,11 +163,11 @@ export default {
       return cookieValue;
     },
     SunReminder: function () {
-      const cookie = this.GetCookie("sunExpoCount");
+      debugger
+      let cookie = this.GetCookie("sunExpoCount");
       if (cookie == null) {
        return null;
       }
-      debugger
       let cDate = new Date()
       // cDate.setDate(cDate.getDate() + (3 * 24 * 60 * 60 * 1000))
       cDate.Date.parse(cookie[0]).toString("MMMM yyyy");
@@ -189,6 +198,7 @@ export default {
       }
     }
     this.alertMaxUV()
+    this.SetCookie()
     this.SunReminder()
     
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
