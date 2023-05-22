@@ -23,7 +23,7 @@ export default {
   methods: {
     GetUserInfo: async function (userName) {
       console.log("getting user info");
-      axios
+      await axios
         .post("https://zuncapapi.azurewebsites.net/api/Users/getuser", {
           name: userName,
         })
@@ -120,7 +120,7 @@ export default {
     },
 
     dayCount () {
-      let time = this.startTimer()
+      dayCount = 0
       
       if (0 < time < this.alertTime){
         dayCount++
@@ -178,7 +178,6 @@ export default {
       const MS_PER_DAY = 1000 * 60 * 60 * 24;
       const date = new Date()
       console.log("date: " + date);
-      //debugger
       const diffence = Math.floor((cDate - date) / MS_PER_DAY);
       console.log("Diffence: " + diffence);
       if (diffence > 2){
@@ -189,7 +188,6 @@ export default {
 
   }, //Methods End
   mounted: async function () {
-    //debugger
     let cookie = await this.GetCookie("userName");
     if (cookie != null) {
       this.cUserName = cookie[0];
@@ -202,6 +200,7 @@ export default {
     this.SetCookie();
     this.SunReminder();
 
+    
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
     setTimeout(this.alertBeforeMaxUV, (this.alertTime - 10) * 60000);
