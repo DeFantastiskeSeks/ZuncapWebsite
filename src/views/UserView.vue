@@ -9,6 +9,7 @@ export default {
       alertTime: null,
       cUserName: null,
       cExpiredays: 5,
+      dayCount: 0,
       userData: {
         userId: 0,
         name: "",
@@ -36,7 +37,6 @@ export default {
         });
     },
     GetInfoTimer: async function (userUVIndex, userHudtype) {
-      debugger;
       if ((userUVIndex >= 3) & (userUVIndex < 5)) {
         if (userHudtype == 1) {
           this.alertTime = 40;
@@ -102,7 +102,6 @@ export default {
     startTimer: function() {
 
       let timer = 0;
-      let dayCount = 0;
       
       //let userUVExpo = this.userData.uvExpo
       //let userHudtype = this.userData.hudtype
@@ -115,14 +114,14 @@ export default {
           console.log("sekunder: " + timer)
 
           if (timer === 10 ){
-            dayCount = dayCount + 1;
-            console.log("Daycount: " + dayCount)
+            this.dayCount = this.dayCount + 1;
+            console.log("Daycount: " + this.dayCount)
           }
 
           if (timer > this.alertTime * 60) {
             clearInterval(interval);
             timer = 0;
-            dayCount = 0;
+            this.dayCount = 0;
           }
         }, 1000);
       }
@@ -263,6 +262,14 @@ export default {
               </div>
               <div class="col">
                 {{ userData.uvExpo }}
+              </div>
+            </div>
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                Dage med sol:
+              </div>
+              <div class="col">
+                {{ dayCount }}
               </div>
             </div>
           </div>
