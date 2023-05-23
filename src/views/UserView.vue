@@ -194,7 +194,6 @@ export default {
         console.log("Diffence: " + diffence);
       }
     },
-
   }, //Methods End
   mounted: async function () {
     let cookie = await this.GetCookie("userName");
