@@ -75,14 +75,17 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-auto mx-auto">
-        <form v-on:submit.prevent="PostLogin()">
-          <div class="form-login">
-            <h1>Log in</h1>
+  <div class="container h-100">
+    <div class="d-flex align-items-center justify-content-center h-100">
+      <div class="card">
+        <div class="card-header bg-orange">
+          <h1 class="card-title">Log in</h1>
+        </div>
+        <div class="card-body">
+          <form v-on:submit.prevent="PostLogin()">
+          <div class="form-login">            
             <div class="form-group">
-              <label for="nameUser">Navn</label>
+              <label for="nameUser">Brugernavn:</label>
               <input
                 v-model="this.userName"
                 type="text"
@@ -91,7 +94,7 @@ export default {
               />
             </div>
             <div class="form-group">
-              <label for="Password">Password</label>
+              <label for="Password">Password:</label>
               <input
                 v-model="this.password"
                 type="password"
@@ -104,10 +107,11 @@ export default {
               <label class="form-check-label">Husk mig</label>
             </div>
             <div>
-              <button onclick="location.href='/user'" type="submit" class="btn btn-primary" name="submitbtn">Login</button>
+              <button onclick="location.href='/user'" type="submit" class="btn btn-color" name="submitbtn">Login</button>
             </div>
           </div>
         </form>
+        </div>
       </div>
     </div>
   </div>

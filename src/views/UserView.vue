@@ -225,29 +225,57 @@ export default {
 </script>
   
 <template>
-  <div class="container">
-    <div>
-      <h1 style="font-size: 50px">Bruger</h1>
-      <button @click="GetUserInfo()"></button>
-      <div id="userData-container">
-        <table style="width: 40%; height: 300px; font-size: 30px">
-          <tr>
-            <td>Navn:</td>
-            <td>{{ userData.name }}</td>
-          </tr>
-          <tr>
-            <td>Telefon Nummer:</td>
-            <td>{{ userData.telefonNummer }}</td>
-          </tr>
-          <tr>
-            <td>Hudtype</td>
-            <td>{{ userData.hudtype }}</td>
-          </tr>
-          <tr>
-            <td>Dage med Sol:</td>
-            <td>{{ dayCount}}</td>
-          </tr>
-        </table>
+  <div class="container h-100">
+    <div class="d-flex align-items-center justify-content-center h-100">
+      <div class="card">
+        <div class="card-header bg-orange">
+          <h1 class="card-title">Bruger</h1>
+        </div>
+        <div class="card-body">          
+          <button @click="GetUserInfo()" class="btn btn-color">Update</button>
+          <div id="userData-container" class="row">            
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                Navn
+              </div>
+              <div class="col">
+                {{ userData.name }}
+              </div>
+            </div>
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                Tlf:
+              </div>
+              <div class="col">
+                {{ userData.telefonNummer }}
+              </div>
+            </div>
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                Hudtype:
+              </div>
+              <div class="col">
+                {{ userData.hudtype }}
+              </div>
+            </div>
+            <div class="mt-2 col-12 row">
+              <div class="col fw-bold">
+                UV-Expo:
+              </div>
+              <div class="col">
+                {{ userData.uvExpo }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-card">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <img class="img-fluid" style="height: 2.5rem;" src="../assets/img/orangutan.png" alt="Orangutan">
+            </div>
+            <small> Shine up your life </small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
