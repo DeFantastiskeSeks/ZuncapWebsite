@@ -103,10 +103,6 @@ export default {
 
       let timer = 0;
       
-      //let userUVExpo = this.userData.uvExpo
-      //let userHudtype = this.userData.hudtype
-      //let endTime = this.GetInfoTimer(userUVExpo, userHudtype)
-      
       if (this.userData.uvExpo > 3) {
 
         const interval = setInterval(() => {
@@ -126,17 +122,6 @@ export default {
         }, 1000);
       }
     },
-
-    // dayCount () {
-    //   let count = 0
-      
-    //   if (0 < timer < this.alertTime){
-    //     count = count + 1
-    //   }
-    //   if ( this.startTimer > this.alertTime ) {
-    //     count = 0
-    //   }
-    // },
     
     SetCookie: async function (cname, cvalue, cPasswordValue, cexpiredays) {
       const expirationDate = new Date();
@@ -176,11 +161,7 @@ export default {
        return null;
       }
       let cDate = new Date()
-      // cDate.setDate(cDate.getDate() + (3 * 24 * 60 * 60 * 1000))
       cDate.setTime(cDate.getTime() + (3 * 24 * 60 * 60 * 1000))
-
-      // const cDate = new Date()
-      // cDate.setDate(cDate.getDate() + 3);
       console.log("cDate: " + cDate);
 
       const MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -215,7 +196,6 @@ export default {
     
     this.startTimer()
     console.log(this.dayCount())
-    //console.log("AlertTime: " + this.alertTime);
     console.log("mounted");
   
   },
