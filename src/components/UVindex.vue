@@ -4,10 +4,8 @@ export default {
     return {
       //https://www.openuv.io/dashboard?tab=0
       weatherData: null,
-      apiKey: "openuv-180e7rlhkig55y-io",
       lat: 0,
       lng: 0,
-      geoApiURL: "http://api.openweathermap.org/geo/1.0/direct?q=DK&appid=",
       UVI: 0,
       messageFaktor: null,
       messageUVI: null,
@@ -15,20 +13,23 @@ export default {
     };
   },
   methods: {
-    DisplayWarningMessage: function() {
-      if (this.UVI >= 2 && this.UVI < 3) {
+    DisplayWarningMessage: async function() {
+      if (this.UVI >= 0 && this.UVI < 1.9) {
+        this.messageFaktor = "Du kan brug for solcream";
+        this.messageUVI = "Meget Lavt";
+      } else if (this.UVI >= 2 && this.UVI <= 2,9) {
         this.messageFaktor = "Du kan bruge faktor 15, en gang hver time";
         this.messageUVI = "Lavt";
-      } else if (this.UVI >= 3 && this.UVI <= 6) {
+      } else if (this.UVI >= 3 && this.UVI < 5.9) {
         this.messageFaktor = "Du kan bruge faktor 15, en gang hver time";
         this.messageUVI = "Moderat";
-      } else if (this.UVI >= 6 && this.UVI <= 8) {
+      } else if (this.UVI >= 6 && this.UVI < 7.9) {
         this.messageFaktor = "Du kan bruge faktor 30, en gang hver 20 minut";
         this.messageUVI = "Højt";
-      } else if (this.UVI >= 8 && this.UVI <= 10) {
+      } else if (this.UVI >= 8 && this.UVI < 9.9) {
         this.messageFaktor = "Du kan bruge faktor 50, en gang hver 15 minut";
         this.messageUVI = "Meget høj";
-      } else if (this.UVI >= 10 && this.UVI <= 15) {
+      } else if (this.UVI >= 10 && this.UVI < 15) {
         this.messageFaktor = "Du kan bruge faktor 50+, en gang hver 10 minut";
         this.messageUVI = "Forfærdelig højt";
       }
@@ -52,10 +53,9 @@ export default {
           "&alt=100&dt=",
         requestOptions
       )
-        .then((response) => response.text())
-        .then((result) => {
-          const newResult = JSON.parse(result);
-          this.UVI = newResult.result.uv;
+        .then((response) => response.json())
+        .then((data) => {
+          this.UVI = data.result.uv;
           this.loading = false;
         })
         .catch((error) => console.log("error", error));
@@ -70,21 +70,22 @@ export default {
         this.Error();
       }
     },
-    Succes: function (position) {
+    Succes: async function (position) {
       this.lat = position.coords.latitude;
       this.lng = position.coords.longitude;
-      this.GetWeatherData();
+      await this.GetWeatherData();
     },
     Error: function () {
       console.log("Geolocation not permited or disabled");
     },
   },
-  created() {
+  async created() {
     this.GetPosition();
+    this.DisplayWarningMessage();
   },
   watch: {
-    UVI: function () {
-      this.DisplayWarningMessage();
+    UVI: async function () {
+      await this.DisplayWarningMessage();
     },
   },
 };
