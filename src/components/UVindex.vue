@@ -15,7 +15,7 @@ export default {
   methods: {
     DisplayWarningMessage: async function() {
       if (this.UVI >= 0 && this.UVI < 1.9) {
-        this.messageFaktor = "Du kan brug for solcream";
+        this.messageFaktor = "Du har ikke brug for solcream";
         this.messageUVI = "Meget Lavt";
       } else if (this.UVI >= 2 && this.UVI <= 2,9) {
         this.messageFaktor = "Du kan bruge faktor 15, en gang hver time";
