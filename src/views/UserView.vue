@@ -195,7 +195,7 @@ export default {
     console.log(this.alertTime)
     
     this.startTimer()
-    console.log(this.dayCount())
+    console.log(this.dayCount)
     console.log("mounted");
   
   },
