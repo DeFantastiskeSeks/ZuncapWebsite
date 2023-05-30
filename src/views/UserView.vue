@@ -184,10 +184,7 @@ export default {
       await this.GetUserInfo(this.cUserName);
     }
     
-    this.alertMaxUV();
     this.SetCookie();
-    this.SunReminder();
-
     
     await this.GetInfoTimer(this.userData.uvExpo, this.userData.hudtype);
     setTimeout(this.alertMaxUV, this.alertTime * 60000);
@@ -209,8 +206,7 @@ export default {
         <div class="card-header bg-orange">
           <h1 class="card-title">Bruger</h1>
         </div>
-        <div class="card-body">          
-          <button @click="GetUserInfo()" class="btn btn-color">Update</button>
+        <div class="card-body">
           <div id="userData-container" class="row">            
             <div class="mt-2 col-12 row">
               <div class="col fw-bold">
@@ -252,6 +248,11 @@ export default {
                 {{ dayCount }}
               </div>
             </div>
+          </div>
+          <div class="mt-2">
+            <button class="btn btn-color me-2" @click="alertMaxUV">AlertMaxUV</button>
+            <button class="btn btn-color me-2" @click="alertBeforeMaxUV">AlertBeforeMaxUV</button>
+            <button class="btn btn-color" @click="SunReminder">SunReminder</button>
           </div>
         </div>
         <div class="card-footer bg-card">
